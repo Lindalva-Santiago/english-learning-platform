@@ -1,46 +1,53 @@
-let score = 0;
-let answered = false;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Lesson 1 — Greetings</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
 
-function checkAnswer(correctOption, selectedOption, feedbackId) {
+<body>
 
-    if(answered) return;
+<div class="lesson-container">
+  <h1>Lesson 1 — Greetings</h1>
+  <p>Choose the correct translation:</p>
 
-    const feedback = document.getElementById(feedbackId);
+  <form id="quizForm">
 
-    if(selectedOption === correctOption) {
-        feedback.innerHTML = "Correct! 🎉";
-        feedback.style.color = "#4CAF50";
-        score++;
-    } else {
-        feedback.innerHTML = "Not quite. Try again!";
-        feedback.style.color = "#FF5252";
-    }
+    <div class="question">
+      <p>1) Hello</p>
+      <label><input type="radio" name="q1" value="a"> Obrigado</label><br>
+      <label><input type="radio" name="q1" value="b"> Olá</label><br>
+      <label><input type="radio" name="q1" value="c"> Tchau</label>
+    </div>
 
-    document.getElementById("score").innerText = score;
-    answered = true;
-}
+    <div class="question">
+      <p>2) Good morning</p>
+      <label><input type="radio" name="q2" value="a"> Boa noite</label><br>
+      <label><input type="radio" name="q2" value="b"> Boa tarde</label><br>
+      <label><input type="radio" name="q2" value="c"> Bom dia</label>
+    </div>
 
-function nextQuestion() {
-    answered = false;
-}
+    <div class="question">
+      <p>3) Thank you</p>
+      <label><input type="radio" name="q3" value="a"> Obrigado</label><br>
+      <label><input type="radio" name="q3" value="b"> Desculpa</label><br>
+      <label><input type="radio" name="q3" value="c"> Por favor</label>
+    </div>
 
-function finishLesson() {
+    <br>
+    <button type="button" onclick="checkAnswers()">Check Answers</button>
 
-    let message = "";
+  </form>
 
-    if(score === 3) {
-        message = "Excellent! Perfect score! 🌟";
-    }
-    else if(score === 2) {
-        message = "Great job! Almost perfect!";
-    }
-    else if(score === 1) {
-        message = "Good effort! Review greetings and try again.";
-    }
-    else {
-        message = "Let's practice more greetings!";
-    }
+  <div id="result"></div>
 
-    alert("Final score: " + score + "/3\n" + message);
-}
+  <br>
+  <a href="../index.html">⬅ Back to Home</a>
 
+</div>
+
+<script src="../js/lesson1.js"></script>
+
+</body>
+</html>
