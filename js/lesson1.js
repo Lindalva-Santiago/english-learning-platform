@@ -6,9 +6,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const correctAnswers = ["good morning"]; // aceitaremos variações simples
 
-  function normalize(text) {
-    return text.trim().toLowerCase();
-  }
+function normalize(text) {
+  return text
+    .trim()
+    .toLowerCase()
+    .replace(/[.!?,"']/g, ""); // remove pontuação básica
+}
 
   function checkAnswer() {
     const user = normalize(input.value);
