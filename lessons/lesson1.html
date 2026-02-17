@@ -1,30 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Lesson 1 - Greetings</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lesson 1 — Greetings</title>
   <link rel="stylesheet" href="../style.css">
 </head>
 
 <body>
+  <main class="container">
+    <h1>Lesson 1 — Greetings</h1>
 
-<h1>Lesson 1 — Greetings</h1>
+    <section class="card">
+      <h2>Vocabulary</h2>
+      <ul>
+        <li><strong>Hello</strong> = Olá</li>
+        <li><strong>Good morning</strong> = Bom dia</li>
+        <li><strong>Good afternoon</strong> = Boa tarde</li>
+        <li><strong>Good night</strong> = Boa noite</li>
+      </ul>
+    </section>
 
-<p>Hello = Olá</p>
-<p>Good morning = Bom dia</p>
-<p>Good afternoon = Boa tarde</p>
-<p>Good night = Boa noite</p>
+    <section class="card">
+      <h2>Exercise</h2>
+      <p><strong>Translate:</strong> “Bom dia”</p>
 
-<h2>Exercise</h2>
+      <div class="row">
+        <input id="answerInput" type="text" placeholder="Type your answer..." autocomplete="off" />
+        <button id="checkBtn" class="btn">Check</button>
+      </div>
 
-<p>Translate: "Bom dia"</p>
+      <p id="feedback" class="feedback" aria-live="polite"></p>
 
-<input type="text" id="answer">
-<button onclick="checkAnswer()">Check</button>
+      <div class="row">
+        <a class="btn secondary" href="../index.html">Back to Home</a>
+        <button id="nextBtn" class="btn" disabled>Next lesson</button>
+      </div>
+    </section>
+  </main>
 
-<p id="result"></p>
-
-<script src="../script.js"></script>
-
+  <!-- IMPORTANT: caminho correto porque lesson1.html está dentro de /lessons -->
+  <script src="../js/lesson1.js"></script>
 </body>
 </html>
