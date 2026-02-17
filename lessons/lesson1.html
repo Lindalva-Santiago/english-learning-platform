@@ -22,21 +22,28 @@
     </section>
 
     <section class="card">
-      <h2>Exercise</h2>
-      <p><strong>Translate:</strong> “Bom dia”</p>
+  <h2>Exercise</h2>
+  <p><strong>Translate:</strong> “Bom dia”</p>
 
-      <div class="row">
-        <input id="answerInput" type="text" placeholder="Type your answer..." autocomplete="off" />
-        <button id="checkBtn" class="btn">Check</button>
-      </div>
+  <div class="row">
+    <input id="answerInput" type="text" placeholder="Type your answer..." autocomplete="off" />
+    <button id="checkBtn" class="btn">Check</button>
+  </div>
 
-      <p id="feedback" class="feedback" aria-live="polite"></p>
+  <!-- ESTE É O FEEDBACK (não apague) -->
+  <p id="feedback" class="feedback" aria-live="polite"></p>
 
-      <div class="row">
-        <a class="btn secondary" href="../index.html">Back to Home</a>
-        <button id="nextBtn" class="btn" disabled>Next lesson</button>
-      </div>
-    </section>
+  <!-- (opcional) score -->
+  <p class="scoreline">Score: <strong id="score">0</strong></p>
+
+  <div class="row">
+    <a class="btn secondary" href="../index.html">Back to Home</a>
+    <button id="nextBtn" class="btn" disabled>Next lesson</button>
+  </div>
+</section>
+
+<script src="../js/lesson1.js"></script>
+
   </main>
 
   <!-- IMPORTANT: caminho correto porque lesson1.html está dentro de /lessons -->
