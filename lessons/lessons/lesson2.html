@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lesson 2 — Introductions</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+  <main class="container">
+    <h1>Lesson 2 — Introductions</h1>
+
+    <section class="card">
+      <h2>Vocabulary</h2>
+      <ul>
+        <li><strong>My name is…</strong> = Meu nome é…</li>
+        <li><strong>Nice to meet you</strong> = Prazer em conhecer você</li>
+        <li><strong>What’s your name?</strong> = Qual é o seu nome?</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Quiz (3 questions)</h2>
+
+      <div class="quiz-item">
+        <p><strong>1)</strong> Translate: “Qual é o seu nome?”</p>
+        <div class="row">
+          <input id="q1" type="text" placeholder="Type your answer..." autocomplete="off" />
+          <button class="btn" data-check="q1" data-answer="what's your name">Check</button>
+        </div>
+        <p class="feedback" id="f1" aria-live="polite"></p>
+      </div>
+
+      <div class="quiz-item">
+        <p><strong>2)</strong> Translate: “Meu nome é Ana.”</p>
+        <div class="row">
+          <input id="q2" type="text" placeholder="Type your answer..." autocomplete="off" />
+          <button class="btn" data-check="q2" data-answer="my name is ana">Check</button>
+        </div>
+        <p class="feedback" id="f2" aria-live="polite"></p>
+      </div>
+
+      <div class="quiz-item">
+        <p><strong>3)</strong> Translate: “Prazer em conhecer você.”</p>
+        <div class="row">
+          <input id="q3" type="text" placeholder="Type your answer..." autocomplete="off" />
+          <button class="btn" data-check="q3" data-answer="nice to meet you">Check</button>
+        </div>
+        <p class="feedback" id="f3" aria-live="polite"></p>
+      </div>
+
+      <hr style="opacity:.2; margin:18px 0;">
+
+      <p><strong>Score:</strong> <span id="score">0</span>/3</p>
+
+      <div class="row">
+        <a class="btn secondary" href="../index.html">Back to Home</a>
+        <button id="finishBtn" class="btn" disabled>Finish lesson</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="../js/lesson2.js"></script>
+</body>
+</html>
