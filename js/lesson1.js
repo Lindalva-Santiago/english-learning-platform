@@ -1,53 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Lesson 1 — Greetings</title>
-  <link rel="stylesheet" href="../style.css">
-</head>
+document.addEventListener("DOMContentLoaded", () => {
+  const input = document.getElementById("answerInput");
+  const checkBtn = document.getElementById("checkBtn");
+  const feedback = document.getElementById("feedback");
+  const nextBtn = document.getElementById("nextBtn");
 
-<body>
+  const correctAnswers = ["good morning"]; // aceitaremos variações simples
 
-<div class="lesson-container">
-  <h1>Lesson 1 — Greetings</h1>
-  <p>Choose the correct translation:</p>
+  function normalize(text) {
+    return text.trim().toLowerCase();
+  }
 
-  <form id="quizForm">
+  function checkAnswer() {
+    const user = normalize(input.value);
 
-    <div class="question">
-      <p>1) Hello</p>
-      <label><input type="radio" name="q1" value="a"> Obrigado</label><br>
-      <label><input type="radio" name="q1" value="b"> Olá</label><br>
-      <label><input type="radio" name="q1" value="c"> Tchau</label>
-    </div>
+    if (!user) {
+      feedback.textContent = "Type an answer first.";
+      feedback.className = "feedback warn";
+      return;
+    }
 
-    <div class="question">
-      <p>2) Good morning</p>
-      <label><input type="radio" name="q2" value="a"> Boa noite</label><br>
-      <label><input type="radio" name="q2" value="b"> Boa tarde</label><br>
-      <label><input type="radio" name="q2" value="c"> Bom dia</label>
-    </div>
+    const ok = correctAnswers.includes(user);
 
-    <div class="question">
-      <p>3) Thank you</p>
-      <label><input type="radio" name="q3" value="a"> Obrigado</label><br>
-      <label><input type="radio" name="q3" value="b"> Desculpa</label><br>
-      <label><input type="radio" name="q3" value="c"> Por favor</label>
-    </div>
+    if (ok) {
+      feedback.textContent = "Correct! ✅ “Bom dia” = Good morning.";
+      feedback.className = "feedback ok";
+      nextBtn.disabled = false;
+    } else {
+      feedback.textContent = "Not yet. Try again! Hint: it starts with “Good …”.";
+      feedback.className = "feedback bad";
+      nextBtn.disabled = true;
+    }
+  }
 
-    <br>
-    <button type="button" onclick="checkAnswers()">Check Answers</button>
+  checkBtn.addEventListener("click", checkAnswer);
 
-  </form>
+  input.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") checkAnswer();
+  });
 
-  <div id="result"></div>
+  nextBtn.addEventListener("click", () => {
+    alert("Next lesson will be added soon 🙂");
+  });
+});
 
-  <br>
-  <a href="../index.html">⬅ Back to Home</a>
-
-</div>
-
-<script src="../js/lesson1.js"></script>
-
-</body>
-</html>
