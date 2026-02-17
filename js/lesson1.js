@@ -41,8 +41,9 @@ function normalize(text) {
     if (e.key === "Enter") checkAnswer();
   });
 
-  nextBtn.addEventListener("click", () => {
-    alert("Next lesson will be added soon 🙂");
-  });
+nextBtn.addEventListener("click", () => {
+  // salva progresso simples
+  localStorage.setItem("lesson1_done", "true");
+  window.location.href = "../lessons/lesson2.html";
 });
 
