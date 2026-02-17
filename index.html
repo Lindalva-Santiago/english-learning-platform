@@ -6,10 +6,22 @@
   <title>English Learning Platform</title>
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
   <div class="container">
 
-    <div class="header">
+    <!-- Top navigation -->
+    <nav class="topnav">
+      <a class="nav-brand" href="index.html">English Learning Platform</a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="#lessons">Lessons</a>
+        <a href="#progress">Progress</a>
+      </div>
+    </nav>
+
+    <!-- Hero / Header -->
+    <header class="header">
       <div class="brand">
         <h1>English Learning Platform</h1>
         <p>
@@ -19,34 +31,87 @@
 
         <div class="actions">
           <a class="btn primary" href="lessons/lesson1.html">Start Lesson 1</a>
-          <a class="btn secondary" href="README.md">Project README</a>
+
+          <!-- IMPORTANT: troque o link abaixo pelo link do SEU repositório -->
+          <a class="btn secondary" target="_blank" rel="noopener"
+             href="https://github.com/Lindalva-Santiago/english-learning-platform">
+            Project Repository
+          </a>
+        </div>
+
+        <!-- Small stats (future-ready) -->
+        <div class="mini-stats" aria-label="Course stats">
+          <div class="pill"><strong>1</strong> lesson available</div>
+          <div class="pill"><strong>Quizzes</strong> with instant feedback</div>
+          <div class="pill"><strong>Progress</strong> (coming next)</div>
         </div>
       </div>
 
-      <!-- Troque o src quando você subir a imagem -->
-      <img class="hero-img" src="assets/img/hero.jpg" alt="English learning illustration">
-    </div>
+      <img class="hero-img" src="assets/img/hero.jpg" alt="English learning illustration" />
+    </header>
 
-    <div class="section">
+    <!-- Lessons -->
+    <section id="lessons" class="section">
       <h2>Lessons</h2>
+
       <div class="cards">
-        <div class="card">
+        <article class="card">
           <h3>Lesson 1 — Greetings</h3>
           <p>Basic greetings, introductions, and common phrases.</p>
           <a class="link" href="lessons/lesson1.html">Open lesson →</a>
-        </div>
+        </article>
 
-        <div class="card">
-          <h3>Coming next</h3>
+        <article class="card">
+          <h3>Lesson 2 — Numbers (Coming next)</h3>
           <p>Numbers, days of the week, simple questions, and short dialogues.</p>
-          <span class="link">Soon</span>
-        </div>
+          <span class="link muted">Soon</span>
+        </article>
       </div>
-    </div>
+    </section>
 
-    <div class="footer">
+    <!-- Progress -->
+    <section id="progress" class="section">
+      <h2>Your Progress</h2>
+
+      <div class="cards">
+        <article class="card">
+          <h3>Current status</h3>
+          <p>Finish Lesson 1 to unlock the Next lesson button.</p>
+          <ul class="clean">
+            <li>Lesson 1: <strong>Available</strong></li>
+            <li>Lesson 2: <strong>Planned</strong></li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3>Score</h3>
+          <p>This will show your points and completed lessons.</p>
+          <div class="score-box">
+            <div><span class="label">Points</span><strong id="points">0</strong></div>
+            <div><span class="label">Lessons done</span><strong id="done">0</strong></div>
+          </div>
+          <p class="muted" style="margin-top:10px;">
+            (Next step: we will save progress in the browser automatically.)
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <footer class="footer">
       © 2026 — English Learning Platform • Built with HTML/CSS/JS • GitHub Pages
-    </div>
+    </footer>
+
   </div>
+
+  <!-- Optional: later we will fill points/done from localStorage -->
+  <script>
+    // Safe placeholder (doesn't break anything)
+    const points = localStorage.getItem("elp_points") || "0";
+    const done = localStorage.getItem("elp_done") || "0";
+    const pEl = document.getElementById("points");
+    const dEl = document.getElementById("done");
+    if (pEl) pEl.textContent = points;
+    if (dEl) dEl.textContent = done;
+  </script>
 </body>
 </html>
