@@ -1,61 +1,64 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const scoreEl = document.getElementById("score");
-  const finishBtn = document.getElementById("finishBtn");
+  const input = document.getElementById("answerInput");
+  const checkBtn = document.getElementById("checkBtn");
+  const feedback = document.getElementById("feedback");
+  const nextBtn = document.getElementById("nextBtn");
 
-  let score = 0;
-  const solved = new Set();
+  const SCORE_KEY = "elp_score";
+  const LESSON2_DONE_KEY = "elp_lesson2_done";
+
+  const correctAnswers = ["three", "3"];
 
   function normalize(text) {
-    return text.trim().toLowerCase().replace(/\s+/g, " ");
+    return text.trim().toLowerCase();
   }
 
-  function setFeedback(id, msg, cls) {
-    const el = document.getElementById(id);
-    el.textContent = msg;
-    el.className = `feedback ${cls}`;
+  function getScore() {
+    return Number(localStorage.getItem(SCORE_KEY) || "0");
   }
 
-  function updateScore() {
-    scoreEl.textContent = String(score);
-    finishBtn.disabled = score < 3;
+  function setScore(value) {
+    localStorage.setItem(SCORE_KEY, String(value));
   }
 
-  document.querySelectorAll("button[data-check]").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const inputId = btn.dataset.check;
-      const answer = btn.dataset.answer;
+  function show(message, type) {
+    feedback.textContent = message;
+    feedback.className = `feedback ${type}`;
+  }
 
-      const input = document.getElementById(inputId);
-      const user = normalize(input.value);
+  function checkAnswer() {
+    const user = normalize(input.value);
 
-      const feedbackId = inputId === "q1" ? "f1" : inputId === "q2" ? "f2" : "f3";
+    if (!user) {
+      show("Type an answer first.", "warn");
+      return;
+    }
 
-      if (!user) {
-        setFeedback(feedbackId, "Type an answer first.", "warn");
-        return;
+    const ok = correctAnswers.includes(user);
+
+    if (ok) {
+      const alreadyDone = localStorage.getItem(LESSON2_DONE_KEY) === "1";
+
+      if (!alreadyDone) {
+        setScore(getScore() + 10);
+        localStorage.setItem(LESSON2_DONE_KEY, "1");
       }
 
-      if (solved.has(inputId)) {
-        setFeedback(feedbackId, "Already correct ✅", "ok");
-        return;
-      }
+      show("Correct! “Três” = Three.", "ok");
+      nextBtn.disabled = false;
+    } else {
+      show("Not yet. Try again! Hint: it is a number.", "bad");
+      nextBtn.disabled = true;
+    }
+  }
 
-      if (user === normalize(answer)) {
-        solved.add(inputId);
-        score += 1;
-        setFeedback(feedbackId, "Correct ✅", "ok");
-        updateScore();
-      } else {
-        setFeedback(feedbackId, "Not yet. Try again.", "bad");
-      }
-    });
+  checkBtn.addEventListener("click", checkAnswer);
+
+  input.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") checkAnswer();
   });
 
-  finishBtn.addEventListener("click", () => {
-    localStorage.setItem("lesson2_done", "true");
-    localStorage.setItem("total_score", String(Number(localStorage.getItem("total_score") || "0") + score));
-    window.location.href = "../index.html";
+  nextBtn.addEventListener("click", () => {
+    alert("Lesson 3 will be added soon.");
   });
-
-  updateScore();
 });
