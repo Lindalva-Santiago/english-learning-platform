@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.key === "Enter") checkAnswer();
   });
 
-  nextBtn.addEventListener("click", () => {
-    alert("Next lesson will be added soon 🙂");
-  });
+nextBtn.addEventListener("click", () => {
+  window.location.href = "../lessons/lesson2.html";
+});
 });
