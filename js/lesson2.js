@@ -13,49 +13,41 @@ document.addEventListener("DOMContentLoaded", () => {
     return text.trim().toLowerCase();
   }
 
-  function getScore() {
-    return Number(localStorage.getItem(SCORE_KEY) || "0");
-  }
-
-  function setScore(value) {
-    localStorage.setItem(SCORE_KEY, String(value));
-  }
-
   function show(message, type) {
     feedback.textContent = message;
     feedback.className = `feedback ${type}`;
   }
 
-  function checkAnswer() {
-    const user = normalize(input.value);
+  checkBtn.addEventListener("click", () => {
+    const userAnswer = normalize(input.value);
 
-    if (!user) {
+    if (!userAnswer) {
       show("Type an answer first.", "warn");
+      nextBtn.disabled = true;
       return;
     }
 
-    const ok = correctAnswers.includes(user);
+    if (correctAnswers.includes(userAnswer)) {
+      show("Correct! “Três” = Three.", "ok");
 
-    if (ok) {
-      const alreadyDone = localStorage.getItem(LESSON2_DONE_KEY) === "1";
-
-      if (!alreadyDone) {
-        setScore(getScore() + 10);
+      if (localStorage.getItem(LESSON2_DONE_KEY) !== "1") {
+        const currentScore = Number(localStorage.getItem(SCORE_KEY) || "0");
+        localStorage.setItem(SCORE_KEY, String(currentScore + 10));
         localStorage.setItem(LESSON2_DONE_KEY, "1");
       }
 
-      show("Correct! “Três” = Three.", "ok");
       nextBtn.disabled = false;
+      nextBtn.textContent = "Lesson 3 coming soon";
     } else {
       show("Not yet. Try again! Hint: it is a number.", "bad");
       nextBtn.disabled = true;
     }
-  }
+  });
 
-  checkBtn.addEventListener("click", checkAnswer);
-
-  input.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") checkAnswer();
+  input.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      checkBtn.click();
+    }
   });
 
   nextBtn.addEventListener("click", () => {
