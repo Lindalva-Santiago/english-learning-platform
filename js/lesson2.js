@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  nextBtn.addEventListener("click", () => {
-    alert("Lesson 3 will be added soon.");
-  });
+nextBtn.addEventListener("click", () => {
+  window.location.href = "../lessons/lesson3.html";
+});
 });
